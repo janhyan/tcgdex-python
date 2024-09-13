@@ -2,7 +2,7 @@ import requests
 from errors import NoCardsFound, NoSetsFound
 
 BASE_URL = 'https://api.tcgdex.net/v2'
-ENDPOINTS = ['categories', 'energy-types', 'hp',
+ENDPOINTS = ['name', 'categories', 'energy-types', 'hp',
              'illustrators', 'rarities', 'retreats',
              'stages', 'suffixes', 'trainer-types', 
              'dex-ids', 'types']
@@ -60,6 +60,31 @@ class TCGDex:
     def fetch_series(self):
         """Fetch all available series."""
         return requests.get(f'{BASE_URL}/{self.lang}/series').json()
+    
+    def fetch(self, endpoint, identifier):
+        if endpoint == 'series':
+            response = requests.get(f'{BASE_URL}/{self.lang}/series?=name{identifier}').json()
+            try:
+                return self.__handle_response(response, NoCardsFound)
+            except NoCardsFound:
+                print(f"No series found with {endpoint}: {identifier}")
+
+        elif endpoint == 'sets':
+            response = requests.get(f'{BASE_URL}/{self.lang}/sets?=name{identifier}').json()
+            try:
+                return self.__handle_response(response, NoCardsFound)
+            except NoCardsFound:
+                print(f"No sets found with {endpoint}: {identifier}")
+
+        else:
+            if endpoint in ENDPOINTS:
+                response = requests.get(f'{BASE_URL}/{self.lang}/card?{endpoint}={identifier}').json()
+                try:
+                    return self.__handle_response(response, NoCardsFound)
+                except NoCardsFound:
+                    print(f"No cards found with {endpoint}: {identifier}")
+            else:
+                raise ValueError(f"Invalid endpoint: {endpoint}")
 
 test = TCGDex('en')
 print(test.fetch_serie("swssh"))
