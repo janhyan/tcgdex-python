@@ -5,7 +5,7 @@ BASE_URL = 'https://api.tcgdex.net/v2'
 ENDPOINTS = ['name', 'categories', 'energy-types', 'hp',
              'illustrators', 'rarities', 'retreats',
              'stages', 'suffixes', 'trainer-types', 
-             'dex-ids', 'types']
+             'dex-ids', 'types', 'series', 'sets']
 
 class TCGDex:
     def __init__(self, lang='en'):
@@ -62,29 +62,21 @@ class TCGDex:
         return requests.get(f'{BASE_URL}/{self.lang}/series').json()
     
     def fetch(self, endpoint, identifier):
-        if endpoint == 'series':
-            response = requests.get(f'{BASE_URL}/{self.lang}/series?=name{identifier}').json()
-            try:
-                return self.__handle_response(response, NoCardsFound)
-            except NoCardsFound:
-                print(f"No series found with {endpoint}: {identifier}")
+        if endpoint not in ENDPOINTS:
+            raise ValueError(f"Invalid endpoint: {endpoint}")
 
-        elif endpoint == 'sets':
-            response = requests.get(f'{BASE_URL}/{self.lang}/sets?=name{identifier}').json()
-            try:
-                return self.__handle_response(response, NoCardsFound)
-            except NoCardsFound:
-                print(f"No sets found with {endpoint}: {identifier}")
-
+        # Construct URL based on the endpoint
+        if endpoint in ['series', 'sets']:
+            url = f"{BASE_URL}/{self.lang}/{endpoint}?name={identifier}"
         else:
-            if endpoint in ENDPOINTS:
-                response = requests.get(f'{BASE_URL}/{self.lang}/card?{endpoint}={identifier}').json()
-                try:
-                    return self.__handle_response(response, NoCardsFound)
-                except NoCardsFound:
-                    print(f"No cards found with {endpoint}: {identifier}")
-            else:
-                raise ValueError(f"Invalid endpoint: {endpoint}")
+            url = f"{BASE_URL}/{self.lang}/cards?{endpoint}={identifier}"
+
+        response = requests.get(url).json()
+
+        try:
+            return response
+        except NoCardsFound:
+            print(f"No cards found with {endpoint}: {identifier}")
 
 test = TCGDex('en')
-print(test.fetch_serie("swssh"))
+print(test.fetch_set("swsh3"))
