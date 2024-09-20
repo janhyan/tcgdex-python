@@ -79,4 +79,4 @@ class TCGDex:
             print(f"No cards found with {endpoint}: {identifier}")
 
 test = TCGDex('en')
-print(test.fetch_set("swsh3"))
+print(test.fetch("hp", "100"))
