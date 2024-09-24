@@ -77,6 +77,3 @@ class TCGDex:
             return response
         except NoCardsFound:
             print(f"No cards found with {endpoint}: {identifier}")
-
-test = TCGDex('en')
-print(test.fetch("hp", "100"))

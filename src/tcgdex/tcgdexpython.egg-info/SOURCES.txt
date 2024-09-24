@@ -1,0 +1,12 @@
+README.md
+setup.py
+src/tcgdex/tcgdexpython.egg-info/PKG-INFO
+src/tcgdex/tcgdexpython.egg-info/SOURCES.txt
+src/tcgdex/tcgdexpython.egg-info/dependency_links.txt
+src/tcgdex/tcgdexpython.egg-info/requires.txt
+src/tcgdex/tcgdexpython.egg-info/top_level.txt
+src/tcgdex/tcgdexpython.egg-info/PKG-INFO
+src/tcgdex/tcgdexpython.egg-info/SOURCES.txt
+src/tcgdex/tcgdexpython.egg-info/dependency_links.txt
+src/tcgdex/tcgdexpython.egg-info/requires.txt
+src/tcgdex/tcgdexpython.egg-info/top_level.txt

@@ -8,7 +8,7 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="tcgdex-python",
+    name="tcgdexpython",
     version="0.0.1",
     description="Python 3 Wrapper for Trading Card Game (TCGDex) API",
     long_description=long_description,
@@ -16,7 +16,7 @@ setup(
     url="https://github.com/janhyan/tcgdex-python",
     author="Hyan Jan Suamina",
     author_email="hyanjansuamina@gmail.com",
-    classifiers=[ 
+    classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Build Tools",
@@ -26,8 +26,8 @@ setup(
         "Programming Language :: Python :: 3.10",
     ],
     keywords="tcg, setuptools, development",
-    package_dir={"": "src"}, 
-    packages=find_packages(where="src"),
+    package_dir={"": "src/tcgdex"},  
+    packages=find_packages(include=['tcgdex', 'tcgdex.*']),  
     python_requires=">=3.7, <4",
     install_requires=["requests"],
     project_urls={

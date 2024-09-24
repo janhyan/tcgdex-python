@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: tcgdexpython
+Version: 0.0.1
+Summary: Python 3 Wrapper for Trading Card Game (TCGDex) API
+Home-page: https://github.com/janhyan/tcgdex-python
+Author: Hyan Jan Suamina
+Author-email: hyanjansuamina@gmail.com
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/janhyan/tcgdex-python/issues
+Project-URL: Source, https://github.com/janhyan/tcgdex-python
+Description: # tcgdex_python
+        Python 3 Wrapper for Trading Card Game (TCGDex) API
+        
+Keywords: tcg,setuptools,development
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.7, <4
+Description-Content-Type: text/markdown
